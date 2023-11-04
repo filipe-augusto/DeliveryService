@@ -1,12 +1,21 @@
-﻿using PaymentContext.Shared.Entities;
+﻿using DeliveryService.Domain.Enums;
+using DeliveryService.Domain.ValueObjects;
+using PaymentContext.Shared.Entities;
 using System.Diagnostics;
 
 namespace DeliveryService.Domain.Entities
 {
     public class TruckVehicle : Vehicle
     {
-        public int TruckBody { get; set; }//trocar - caçamba aberta, baú fechado, plataforma plana ou reboqu
-        public bool DualWheels { get; set; }
+        public TruckVehicle(ETruckBodyType eTruckBodyType, bool dualWheels,
+            VehicleIdentification vehicleIdentification, decimal fuelcapacity, bool hasInsurance, decimal cargoVolume, DriverPerson driverPerson) : base(vehicleIdentification, fuelcapacity, hasInsurance, cargoVolume, driverPerson)
+        {
+            TypeTruckBody = eTruckBodyType;
+            DualWheels = dualWheels;
+        }
+
+        public ETruckBodyType TypeTruckBody { get; private set; }
+        public bool DualWheels { get; private set; }
 
     }
 }

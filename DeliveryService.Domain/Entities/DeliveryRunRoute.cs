@@ -1,17 +1,33 @@
-﻿using PaymentContext.Shared.Entities;
+﻿using DeliveryService.Domain.Enums;
+using DeliveryService.Domain.ValueObjects;
+using PaymentContext.Shared.Entities;
 
 namespace DeliveryService.Domain.Entities
 {
     public  class DeliveryRunRoute : Entity
     {
-        public DriverPerson Driver { get; set; }
-        public DeliveryRun DeliveryRun { get; set; }
-        public byte Status { get; set; }//trocar
-        public decimal Distance { get; set; }//trocar
-        public TimeSpan Time { get; set; }
+        public DeliveryRunRoute(DriverPerson driver, DeliveryRun deliveryRun, ERaceStatus status, decimal totalDistance, TimeSpan totalTime, TimeSpan totalDowntime, TimeSpan estimatedTime, Address startingAddress, Address destinationAddress)
+        {
+            Driver = driver;
+            DeliveryRun = deliveryRun;
+            Status = status;
+            TotalDistance = totalDistance;
+            TotalTime = totalTime;
+            TotalDowntime = totalDowntime;
+            EstimatedTime = estimatedTime;
+            StartingAddress = startingAddress;
+            DestinationAddress = destinationAddress;
+        }
 
-        public string StartingAddress { get; set; }
-        public string DestinationAddress { get; set; }
+        public DriverPerson Driver { get; private set; }
+        public DeliveryRun DeliveryRun { get; private set; }
+        public ERaceStatus Status { get; private set; }
+        public decimal TotalDistance { get; private set; }
+        public TimeSpan TotalTime { get; private set; }
+        public TimeSpan TotalDowntime { get; private set; }
+        public TimeSpan EstimatedTime { get; private set; }
+        public Address StartingAddress { get; private set; }
+        public Address DestinationAddress { get; private set; }
 
     }
 }
