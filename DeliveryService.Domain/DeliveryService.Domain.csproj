@@ -7,12 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ValueObjects\" />
     <Folder Include="Queries\" />
     <Folder Include="Repositories\" />
     <Folder Include="Services\" />
     <Folder Include="Handlers\" />
-    <Folder Include="Enums\" />
     <Folder Include="Commands\" />
   </ItemGroup>
 
