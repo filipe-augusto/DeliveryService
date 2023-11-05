@@ -11,10 +11,10 @@ namespace DeliveryService.Domain.ValueObjects
 
             AddNotifications(new Contract()
                 .Requires()
-                .HasMinLen(FirstName, 5, "Name.FirstName", "Nome deve conter pelo menos 5 caracteres")
-                .HasMinLen(LastName, 5, "Name.LastName", "Sobrenome deve conter pelo menos 5 caracteres")
-                .HasMaxLen(FirstName, 50, "Name.FirstName", "Nome deve conter até 40 caracteres")
-                .HasMaxLen(LastName, 50, "Name.LastName", "Nome deve conter até 40 caracteres")
+                .HasMinLen(FirstName, 2, "Name.FirstName", "Nome deve conter pelo menos 2 caracteres")
+                .HasMinLen(LastName, 2, "Name.LastName", "Sobrenome deve conter pelo menos 2 caracteres")
+                .HasMaxLen(FirstName, 40, "Name.FirstName", "Nome deve conter até 40 caracteres")
+                .HasMaxLen(LastName, 40, "Name.LastName", "Nome deve conter até 40 caracteres")
             );
         }
 

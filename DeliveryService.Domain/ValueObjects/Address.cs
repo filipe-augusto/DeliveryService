@@ -27,9 +27,9 @@ namespace DeliveryService.Domain.ValueObjects
           .HasMinLen(City, 3, "Address.City", "A cidade deve conter pelo menos 3 caracteres")
           .HasMaxLen(City, 100, "Address.City", "A Cidade deve no maximo 100 caracteres")
           .HasMinLen(Country, 3, "Address.Country", "O país deve conter pelo menos 3 caracteres")
-          .HasMaxLen(Country, 100, "Address.Country", "O país deve no maximo 100 caracteres")
-          .HasMaxLen(Number, 100, "Address.Number", "O número deve no maximo 100 caracteres")
-          .HasMinLen(Number, 8, "Address.ZipCode", "O CEP deve no maximo 8 caracteres")
+          .HasMaxLen(Country, 50, "Address.Country", "O país deve no maximo 50 caracteres")
+          .HasMaxLen(Number, 20, "Address.Number", "O número deve no maximo 20 caracteres")
+            .HasMinLen(ZipCode, 7, "Address.ZipCode", "O Cep deve no minimo 7 caracteres")
           );
         }
 

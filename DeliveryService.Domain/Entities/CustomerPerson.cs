@@ -17,7 +17,7 @@ namespace DeliveryService.Domain.Entities
 
 
         public bool Banned { get; set; }
-        public IReadOnlyCollection<DeliveryRun> DeliveryRuns { get { return _deliveryRuns.ToArray()} }
+        public IReadOnlyCollection<DeliveryRun> DeliveryRuns { get { return _deliveryRuns.ToArray(); } }
 
         public void AddDeliveryRun(DeliveryRun deliveryRun)
         {

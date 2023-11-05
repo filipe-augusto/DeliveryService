@@ -24,7 +24,7 @@ namespace DeliveryService.Domain.Entities
             AddNotifications(new Contract()
             .Requires()
             .IsTrue(DateTime.Now > DateTime.Now, "PaidDate", "A data do pagamento deve ser futura")
-            .IsLowerOrEqualsThan(0, TotalPaid , "TotalPaid", "Valor precisa ser maior que R$ 0")
+            .IsGreaterThan(0, TotalPaid , "TotalPaid", "Valor precisa ser maior que R$ 0")
         );
         }
 
