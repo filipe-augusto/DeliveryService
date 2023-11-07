@@ -14,6 +14,12 @@ namespace DeliveryService.Domain.Entities
             Vehicle = vehicle;
             NickName = nickName;
             _assessments = new List<Assessment>();
+
+            AddNotifications(new Contract().Requires()
+            .IsNotNull(Vehicle, "DriverPerson.Vehicle", "Veiculo necessario.")
+            .IsNotNullOrEmpty(NickName, "DriverPerson.NickName", "Apelido necessario.")
+            );
+
         }
 
         public Vehicle Vehicle { get; private set; }
@@ -22,14 +28,26 @@ namespace DeliveryService.Domain.Entities
         public string? NickName { get; private set; }
 
 
-        public void ChangeVehicle(Vehicle vehicle) => Vehicle = vehicle;
-        
-        public void AddAssessment(Assessment assessment) => _assessments.Add(assessment);
+        public void ChangeVehicle(Vehicle vehicle)
+        {
+            if (Vehicle.Valid)
+            {
+                Vehicle = vehicle;
+            }
+        }
 
-        
+        public void AddAssessment(Assessment assessment)
+        {
+            if (assessment.Valid)
+            {
+                _assessments.Add(assessment);
+            }
+        }
+
+
 
     }
 
 
-    }
+}
 
