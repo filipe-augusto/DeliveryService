@@ -1,5 +1,9 @@
 ﻿using DeliveryService.Domain.ValueObjects;
 using Flunt.Validations;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics.Metrics;
+using System.IO;
+using System.Reflection.Emit;
 
 namespace DeliveryService.Domain.Entities
 {
@@ -12,6 +16,7 @@ namespace DeliveryService.Domain.Entities
         {
             this.Banned = Banned;
             _deliveryRuns = new List<DeliveryRun>();
+
 
         }
 

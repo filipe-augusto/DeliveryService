@@ -1,4 +1,5 @@
 ﻿using DeliveryService.Domain.ValueObjects;
+using Flunt.Validations;
 using PaymentContext.Shared.Entities;
 
 namespace DeliveryService.Domain.Entities
@@ -12,6 +13,14 @@ namespace DeliveryService.Domain.Entities
             HasInsurance = hasInsurance;
             CargoVolume = cargoVolume;
             DriverPerson = driverPerson;
+
+            AddNotifications(new Contract().Requires()
+         .IsNotNull(VehicleIdentification, "Vehicle.VehicleIdentification", "Identificação necessaria necessario.")
+         .IsGreaterOrEqualsThan(5, Fuelcapacity, "Vehicle.Fuelcapacity", "Capacidade do tanque precisa ser maior que 5L")
+        .IsTrue(HasInsurance, "Vehicle.HasInsurance", "Necessario seguro")
+        .IsGreaterOrEqualsThan(20, CargoVolume, "Vehicle.CargoVolume", "volume minimo é 20 ")
+         );
+
         }
 
         public VehicleIdentification VehicleIdentification { get; set; }
@@ -20,6 +29,15 @@ namespace DeliveryService.Domain.Entities
         public decimal CargoVolume { get; set; }
 
         public DriverPerson DriverPerson { get; set; }
+
+
+        public void ChangeIdentification(VehicleIdentification vehicleIdentification)
+        {
+            if (vehicleIdentification.Valid)
+            {
+                VehicleIdentification = vehicleIdentification;
+            }
+        }
 
     }
 }

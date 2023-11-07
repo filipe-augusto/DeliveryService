@@ -6,8 +6,8 @@ namespace DeliveryService.Domain.Entities;
     {
     public PayPalPayment(string transactionCode,
         string number, DateTime paidDate, DateTime expireDate, decimal total, decimal totalPaid,
-        string payer, CustomerPerson customerPerson, DriverPerson driverPerson, Document document, Address address)
-        : base(number, paidDate, expireDate, total, totalPaid, payer, customerPerson, driverPerson, document, address)
+        string payer, CustomerPerson customerPerson, DriverPerson driverPerson, Document document)
+        : base(number, paidDate, expireDate, total, totalPaid, payer, customerPerson, driverPerson, document)
     {
         TransactionCode = transactionCode;
     }
