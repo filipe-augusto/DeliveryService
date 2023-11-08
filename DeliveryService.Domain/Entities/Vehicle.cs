@@ -16,9 +16,9 @@ namespace DeliveryService.Domain.Entities
 
             AddNotifications(new Contract().Requires()
          .IsNotNull(VehicleIdentification, "Vehicle.VehicleIdentification", "Identificação necessaria necessario.")
-         .IsGreaterOrEqualsThan(5, Fuelcapacity, "Vehicle.Fuelcapacity", "Capacidade do tanque precisa ser maior que 5L")
+         .IsLowerOrEqualsThan(5, Fuelcapacity, "Vehicle.Fuelcapacity", "Capacidade do tanque precisa ser maior que 5L")
         .IsTrue(HasInsurance, "Vehicle.HasInsurance", "Necessario seguro")
-        .IsGreaterOrEqualsThan(20, CargoVolume, "Vehicle.CargoVolume", "volume minimo é 20 ")
+        .IsLowerOrEqualsThan(20, CargoVolume, "Vehicle.CargoVolume", "volume minimo é 20 ")
          );
 
         }

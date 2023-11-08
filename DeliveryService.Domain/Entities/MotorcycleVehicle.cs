@@ -1,4 +1,5 @@
 ﻿using DeliveryService.Domain.ValueObjects;
+using Flunt.Validations;
 using PaymentContext.Shared.Entities;
 
 namespace DeliveryService.Domain.Entities
@@ -11,6 +12,10 @@ namespace DeliveryService.Domain.Entities
         {
             IsScooter = isScooter;
             HasTopBox = hasTopBox;
+
+          AddNotifications(new Contract()
+         .Requires()
+         .IsTrue(HasTopBox, "MotorcycleVehicle.HasTopBox", "É necessario ter uma bag para realização de entregas"));
         }
 
         public bool IsScooter { get; set; }

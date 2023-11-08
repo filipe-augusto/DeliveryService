@@ -1,5 +1,6 @@
 ﻿using DeliveryService.Domain.Enums;
 using DeliveryService.Domain.ValueObjects;
+using Flunt.Validations;
 using PaymentContext.Shared.Entities;
 using System.Diagnostics;
 
@@ -12,6 +13,11 @@ namespace DeliveryService.Domain.Entities
         {
             TypeTruckBody = eTruckBodyType;
             DualWheels = dualWheels;
+
+
+            AddNotifications(new Contract()
+  .Requires()
+  .IsTrue(TypeTruckBody != ETruckBodyType.None, "TruckVehicle.TypeTruckBody", "é necessario um tipo de caçamba para fazer entregas"));
         }
 
         public ETruckBodyType TypeTruckBody { get; private set; }

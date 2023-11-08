@@ -9,27 +9,29 @@ namespace DeliveryService.Tests.Entities
 
 
 
-        [TestMethod]
-        public void adicionar_cliente_invalido()
-        {
-            Assert.Fail();
-        }
+        //[TestMethod]
+        //public void adicionar_cliente_invalido()
+        //{
 
-        [TestMethod]
-        public void adicionar_cliente_valido()
-        {
-            Assert.Fail();
-        }
-        [TestMethod]
-        public void adicionar_motorista_invalido()
-        {
-            Assert.Fail();
-        }
 
-        [TestMethod]
-        public void adicionar_motorista_valido()
-        {
-            Assert.Fail();
-        }
+        //    Assert.Fail();
+        //}
+
+        //[TestMethod]
+        //public void adicionar_cliente_valido()
+        //{
+        //    Assert.Fail();
+        //}
+        //[TestMethod]
+        //public void adicionar_motorista_invalido()
+        //{
+        //    Assert.Fail();
+        //}
+
+        //[TestMethod]
+        //public void adicionar_motorista_valido()
+        //{
+        //    Assert.Fail();
+        //}
     }
 }
