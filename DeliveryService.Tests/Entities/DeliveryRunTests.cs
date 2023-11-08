@@ -31,7 +31,7 @@ namespace DeliveryService.Tests.Entities
            var address = new Address("R", "123", "Bairro Exemplo", "Cidade Exemplo", "Estado", "País", "12345678");
             _person = new CustomerPerson(false, name, phone, email, document, login, address);
 
-            _payment = new PayPalPayment(Guid.NewGuid().ToString().Substring(0,6),"12345678", DateTime.Now, DateTime.Now.AddDays(5), 10, 10, "WAYNE CORP", document, address);
+           // _payment = new PayPalPayment(Guid.NewGuid().ToString().Substring(0,6),"12345678", DateTime.Now, DateTime.Now.AddDays(5), 10, 10, "WAYNE CORP", document, address);
         }
 
 

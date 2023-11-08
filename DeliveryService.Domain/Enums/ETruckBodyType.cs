@@ -6,5 +6,6 @@
         ClosedBoxTruck = 2,
         FlatbedTruck = 3,
         Trailer = 4,
+        None = 5,
     }
 }
