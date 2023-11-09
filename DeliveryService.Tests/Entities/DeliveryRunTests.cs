@@ -19,6 +19,7 @@ namespace DeliveryService.Tests.Entities
         private readonly TimeSpan TotalTime;
         public decimal TotalDistance { get; private set; }
 
+
        
         public DeliveryRunTests()
         {

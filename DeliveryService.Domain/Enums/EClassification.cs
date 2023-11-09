@@ -2,6 +2,7 @@
 {
     public enum EClassification
     {
+        None = 0,
         Poor = 1,
         Fair = 2,
         Avarage = 3,

@@ -1,4 +1,5 @@
-﻿using DeliveryService.Domain.ValueObjects;
+﻿using DeliveryService.Domain.Enums;
+using DeliveryService.Domain.ValueObjects;
 using Flunt.Validations;
 
 namespace DeliveryService.Domain.Entities
@@ -34,6 +35,7 @@ namespace DeliveryService.Domain.Entities
             {
                 Vehicle = vehicle;
             }
+            AddNotifications(new Contract().Requires().IsTrue(vehicle.Valid, "DriverPerson.ChangeVehicle", "Veiculo invalido."));
         }
 
         public void AddAssessment(Assessment assessment)
@@ -42,6 +44,7 @@ namespace DeliveryService.Domain.Entities
             {
                 _assessments.Add(assessment);
             }
+            AddNotifications(new Contract().Requires().IsTrue(assessment.Valid, "DriverPerson.AddAssessment", "Veiculo invalido."));
         }
 
 
