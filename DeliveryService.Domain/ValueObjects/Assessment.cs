@@ -13,6 +13,7 @@ namespace DeliveryService.Domain.ValueObjects
 
             AddNotifications(new Contract()
          .Requires().IsTrue(Validate(), "Assessment.Classification", "Avalição incorreta")
+         .IsTrue(Classification != EClassification.None, "Assessment.Classification", "Avalição incorreta")
      );
         }
 

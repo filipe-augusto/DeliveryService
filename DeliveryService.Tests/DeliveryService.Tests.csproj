@@ -21,4 +21,8 @@
     <ProjectReference Include="..\DeliveryService.Shared\DeliveryService.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NovaPasta\" />
+  </ItemGroup>
+
 </Project>
