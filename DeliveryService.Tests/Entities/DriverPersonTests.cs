@@ -10,8 +10,8 @@ namespace DeliveryService.Tests.Entities
 
         private readonly CarVehicle _vehicleCar;
         private readonly MotorcycleVehicle _vehicleMoto;
-        private readonly VehicleIdentification _vehicleIdentification_car;
         private readonly VehicleIdentification _vehicleIdentification_moto;
+        private readonly VehicleIdentification _vehicleIdentification_car;
         private readonly Name _name;
         private readonly Phone _phone;
         private readonly Email _email;

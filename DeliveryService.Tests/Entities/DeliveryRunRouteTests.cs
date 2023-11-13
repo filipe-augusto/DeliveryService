@@ -2,20 +2,23 @@
 using DeliveryService.Domain.Enums;
 using DeliveryService.Domain.ValueObjects;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DeliveryService.Tests.Entities
 {
     [TestClass]
-    public class PaymentTests
+    public class DeliveryRunRouteTests
     {
+
+
+        private readonly Payment _payment;
 
         private readonly CustomerPerson _customerPerson;
         private readonly DriverPerson _driverPerson;
         private readonly MotorcycleVehicle _vehicleMoto;
         private readonly VehicleIdentification _vehicleIdentification_moto;
-        private readonly Document _document;
-        private readonly DeliveryRun _deliveryRun;
         private readonly Name _nameCustomer;
         private readonly Phone _phoneCustomer;
         private readonly Email _emailCustomer;
@@ -28,11 +31,17 @@ namespace DeliveryService.Tests.Entities
         private readonly Document _documentDriver;
         private readonly Login _loginDriver;
         private readonly Address _addressDriver;
-       
+
+
+        private readonly Address _startingAddress;
+        private readonly Address _destinationAddress;
+        private readonly DeliveryRun _deliveryRun;
+        private readonly TimeSpan _totalTime;
+        private readonly TimeSpan _estimatedTime;
 
 
 
-        public PaymentTests()
+        public DeliveryRunRouteTests()
         {
             _nameCustomer = new Name("filipe", "augusto");
             _phoneCustomer = new Phone("119807550055");
@@ -52,43 +61,37 @@ namespace DeliveryService.Tests.Entities
             _vehicleMoto = new MotorcycleVehicle(true, true, _vehicleIdentification_moto, 8, true, 50, null);
             _driverPerson = new DriverPerson(_vehicleMoto, "João Silva", _nameDriver, _phoneDriver, _emailDriver, _documentDriver, _loginDriver, _addressDriver);
 
+            _payment = new PixPayment("filipe@email.com", "email", "123456789", DateTime.Now, DateTime.Now.AddDays(7), 100.5m, 80.0m,
+            _nameCustomer.FirstName, _customerPerson, _driverPerson, _documentCustomer, null);
+            _deliveryRun = new DeliveryRun(_customerPerson, "Teste 11/11/2023");
+
+            _startingAddress = new Address("Rua Exemplo", "123", "Bairro Exemplo", "Cidade Exemplo", "Estado", "Brasil", "04257000");
+            _destinationAddress = new Address("Rua jornada infinita", "25", "Bairro Eldorado", "São paulo", "Paulo", "Brasil", "04476000");
+
+            _totalTime = new TimeSpan(1, 0, 0);
+            _estimatedTime = new TimeSpan(1, 0, 0);
+     
+
+        }
 
 
-            _document =  new Document("01770065016", EDocumentType.CPF);
-            _deliveryRun = new DeliveryRun(_customerPerson, "teste teste");
+        [TestMethod]
+        public void criar_rota_valida()
+        {
+            var rota = new DeliveryRunRoute(_driverPerson, _deliveryRun, 10m, _totalTime, _estimatedTime
+                 , _startingAddress, _destinationAddress);
 
-            //primeiro precisa criar o teste da corrida
-
+            Assert.IsTrue(rota.Valid);
         }
 
         [TestMethod]
-        public void adicionar_pix_valido()
+        public void criar_rota_invalida()
         {
-            var pix = new  PixPayment("filipe@email.com", "email", "123456789", DateTime.Now, DateTime.Now.AddDays(7), 100, 80,
-                _nameCustomer.FirstName, _customerPerson, _driverPerson, _documentCustomer, _deliveryRun);
+            var rota = new DeliveryRunRoute(_driverPerson, _deliveryRun, 10m, _totalTime, _estimatedTime
+                 , _startingAddress, null);
 
-            Assert.IsTrue(pix.Valid);
+            Assert.IsTrue(rota.Invalid);
         }
-
-        [TestMethod]
-        public void adicionar_pix_invalido()
-        {
-
-            var pix = new PixPayment("filipe@email.com", "email", "123456789", DateTime.Now.AddMonths(1), DateTime.Now.AddDays(7), 10, 10,
-          _nameCustomer.FirstName, _customerPerson, _driverPerson, _documentCustomer, _deliveryRun);
-
-            Assert.IsTrue(pix.Invalid);
-        }
-        [TestMethod]
-        public void adicionar_cartaoCredito_valido()
-        {
-            var cartaoCredito = new CreditCardPayment("filipe a chaves","******2598005","313265465431213185811", "987654321",
-                DateTime.Now, DateTime.Now.AddDays(5), 10, 10,"filipe ",
-                _customerPerson, _driverPerson, _document, _deliveryRun);
-
-            Assert.IsTrue(cartaoCredito.Invalid);
-        }
-
 
     }
 }

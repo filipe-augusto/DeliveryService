@@ -12,9 +12,10 @@ public class BoletoPayment : Payment
         string payer,
         CustomerPerson customerPerson,
         DriverPerson driverPerson,
-        Document document
+        Document document,
+        DeliveryRun deliveryRun
          )
-        : base(number, paidDate, expireDate, total, totalPaid, payer, customerPerson, driverPerson, document)
+        : base(number, paidDate, expireDate, total, totalPaid, payer, customerPerson, driverPerson, document, deliveryRun)
     {
     }
 

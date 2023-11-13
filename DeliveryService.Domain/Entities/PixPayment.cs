@@ -2,9 +2,9 @@
 
 namespace DeliveryService.Domain.Entities;
 
-public abstract class PixPayment : Payment
+public  class PixPayment : Payment
 {
-    protected PixPayment(string keyPix, string pixType,
+    public PixPayment(string keyPix, string pixType,
         string number,
         DateTime paidDate,
         DateTime expireDate,
@@ -13,8 +13,10 @@ public abstract class PixPayment : Payment
         string payer,
         CustomerPerson customerPerson,
         DriverPerson driverPerson,
-        Document document)
-        : base(number, paidDate, expireDate, total, totalPaid, payer, customerPerson, driverPerson, document)
+        Document document,
+        DeliveryRun deliveryRun
+        )
+        : base(number, paidDate, expireDate, total, totalPaid, payer, customerPerson, driverPerson, document , deliveryRun)
     {
         KeyPIx = keyPix;
         PixType = pixType;
