@@ -9,7 +9,7 @@ namespace DeliveryService.Domain.Entities
     public abstract class  Payment : Entity
     {
         protected Payment(string number, DateTime paidDate, DateTime expireDate, decimal total, decimal totalPaid, string payer,
-            CustomerPerson customerPerson, DriverPerson driverPerson, Document document)
+            CustomerPerson customerPerson, DriverPerson driverPerson, Document document, DeliveryRun deliveryRun)
         {
             Number = number;
             PaidDate = paidDate;
@@ -20,15 +20,16 @@ namespace DeliveryService.Domain.Entities
             CustomerPerson = customerPerson;
             DriverPerson = driverPerson;
             Document = document;
-           
+            DeliveryRun = deliveryRun;
 
             AddNotifications(new Contract()
             .Requires()
-            .IsTrue(DateTime.Now > DateTime.Now, "PaidDate", "A data do pagamento deve ser futura")
+             .IsFalse(PaidDate.Day > DateTime.Now.Day, "PaidDate", "A data do pagamento deve ser futura")
             .IsNotNull(CustomerPerson, "Payment.CustomerPerson", "Necessario um cliente vinculado ao pagamento")
             .IsNotNull(DriverPerson, "Payment.DriverPerson", "Necessario um motorista vinculado ao pagamento")
             .IsNotNull(Document, "Payment.Document", "Necessario um documentVinculado ao pagamento")
-            .IsGreaterThan(0, TotalPaid , "TotalPaid", "Valor precisa ser maior que R$ 0")
+             .IsNotNull(DeliveryRun, "Payment.DeliveryRun", "Necessario uma corrida ao pagamento")
+            .IsLowerOrEqualsThan(0, TotalPaid , "TotalPaid", "Valor precisa ser maior que R$ 0")
         );
 
 
@@ -43,23 +44,8 @@ namespace DeliveryService.Domain.Entities
         public CustomerPerson CustomerPerson { get; private set; }
         public DriverPerson DriverPerson { get; private set; }
         public Document Document { get; private set; }
-   
+        public DeliveryRun DeliveryRun { get; private set; }
 
-
-        public void SetCustomer(CustomerPerson customerPerson)
-        {
-            if (customerPerson.Valid)
-            CustomerPerson = customerPerson;
-        }
-
-        public void SetDriver(DriverPerson driverPerson)
-        {
-            if (driverPerson.Valid) DriverPerson = driverPerson;
-        }
-        public void SetDocument(Document document)
-        {
-            if (document.Valid) Document = document;
-        }
     }
 }
 

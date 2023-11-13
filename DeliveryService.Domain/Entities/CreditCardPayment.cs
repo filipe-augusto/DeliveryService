@@ -2,9 +2,13 @@
 
 namespace DeliveryService.Domain.Entities;
 
-public abstract class CreditCardPayment : Payment
+public  class CreditCardPayment : Payment
 {
-    protected CreditCardPayment(string number,
+    public CreditCardPayment(
+        string CardHolderName, 
+        string CardNumber, 
+        string LastTransactionNumber,
+        string number,
         DateTime paidDate,
         DateTime expireDate,
         decimal total,
@@ -12,13 +16,15 @@ public abstract class CreditCardPayment : Payment
         string payer,
         CustomerPerson customerPerson,
         DriverPerson driverPerson,
-        Document document) : base(number, paidDate, expireDate, total, totalPaid, payer, customerPerson, driverPerson, document)
+        Document document,
+        DeliveryRun deliveryRun
+        ) : base(number, paidDate, expireDate, total, totalPaid, payer, customerPerson, driverPerson, document, deliveryRun)
     {
     }
 
-    public string? CardHolderName { get; private set; }
-    public string? CardNumber { get;  private set; }
-    public string? LastTransactionNumber { get; private set; }
+    public string CardHolderName { get; private set; }
+    public string CardNumber { get;  private set; }
+    public string LastTransactionNumber { get; private set; }
 }
 
 
